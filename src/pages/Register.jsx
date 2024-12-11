@@ -1,12 +1,16 @@
 import Lottie from "lottie-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import registerLottieData from '../assets/register.json'
+import { AuthContext } from "../provider/AuthProvider";
 const Register = () => {
 
     const [isClicked, setIsClicked] = useState(true);
+    const { createUser } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const handleSignUp = (e) => {
         e.preventDefault();
@@ -31,7 +35,15 @@ const Register = () => {
             alert('Password must contain at least one lowercase letter');
             return;
         }
-        
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate('/');
+            })
+            .catch(error => {
+                console.log(error.massage);
+            })
 
         
     }

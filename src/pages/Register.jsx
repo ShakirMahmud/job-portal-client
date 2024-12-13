@@ -93,8 +93,8 @@ const Register = () => {
                     </div>
                 </form>
                 <div className="text-center mt-6">
-                    <span className="label-text">Don't have an account yet? </span>
-                    <Link to='/auth/signIn' className="link link-hover">Log In</Link>
+                    <span className="label-text">Already have an account? </span>
+                    <Link to='/login' className="link link-hover">Log In</Link>
                 </div>
                 <div className="w-full flex justify-center py-6">
                     <button

@@ -11,7 +11,7 @@ const Navbar = () => {
             })
             .catch(error => console.log(error));
     }
-    const links = <div>
+    const links = <div className="flex gap-3">
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/">Home</NavLink></li>

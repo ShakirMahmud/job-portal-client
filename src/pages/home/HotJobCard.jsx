@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const HotJobCard = ({ job }) => {
   const {
@@ -12,6 +13,8 @@ const HotJobCard = ({ job }) => {
     salaryRange,
     requirements,
   } = job;
+
+  const navigate = useNavigate();
 
   return (
     <motion.div
@@ -68,6 +71,7 @@ const HotJobCard = ({ job }) => {
         whileHover={{ scale: 1.1 }}
         transition={{ type: "spring", stiffness: 300 }}
         className="bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 focus:outline-none"
+        onClick={() => navigate(`/jobs/${job._id}`)}
       >
         Apply Now
       </motion.button>

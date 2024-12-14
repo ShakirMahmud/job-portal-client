@@ -3,13 +3,14 @@ import React, { useContext, useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import loginLottieData from '../assets/login.json'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 
 const SignIn = () => {
     const [isClicked, setIsClicked] = useState(true);
     const { signinUser, signInWithGoogle } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleSignIn = (e) => {
         e.preventDefault();
@@ -20,7 +21,7 @@ const SignIn = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate('/');
+                navigate(location?.state ? location.state : '/');
             })
             .catch(error => {
                 console.log(error);
@@ -33,7 +34,7 @@ const SignIn = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate('/');
+                navigate(location?.state ? location.state : '/');
             })
             .catch(error => {
                 console.log(error);

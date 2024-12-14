@@ -8,7 +8,7 @@ import { AuthContext } from "../provider/AuthProvider";
 const Register = () => {
 
     const [isClicked, setIsClicked] = useState(true);
-    const { createUser } = useContext(AuthContext);
+    const { createUser, signInWithGoogle } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -49,8 +49,17 @@ const Register = () => {
     }
 
     const handleSignUpWithGoogle = () => {
-
-    }
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate('/');
+            })
+            .catch(error => {
+                console.log(error.massage);
+            })
+        }
+    
 
     return (
         <div className="flex flex-col lg:flex-row-reverse lg:items-center">

@@ -8,7 +8,7 @@ import { AuthContext } from '../provider/AuthProvider';
 
 const SignIn = () => {
     const [isClicked, setIsClicked] = useState(true);
-    const { signinUser } = useContext(AuthContext);
+    const { signinUser, signInWithGoogle } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSignIn = (e) => {
@@ -29,6 +29,15 @@ const SignIn = () => {
 
     const handleSignInWithGoogle = () => {
 
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate('/');
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     return (

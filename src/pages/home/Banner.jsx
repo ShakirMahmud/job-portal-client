@@ -15,7 +15,7 @@ const Banner = () => {
                         <motion.img
                             src={programming}
                             animate = {{ x: [100, 150, 100] }}
-                            transition={{ duration: 5, delay: 1,ease: "easeInOut", repeat: Infinity }}
+                            transition={{ duration: 5, delay: 3,ease: "easeInOut", repeat: Infinity }}
                             className="max-w-sm w-64 rounded-t-[40px] rounded-br-[40px] shadow-2xl border-l-4 border-b-4 border-blue-600" />
                     </div>
                     <div className='flex-1'>                        

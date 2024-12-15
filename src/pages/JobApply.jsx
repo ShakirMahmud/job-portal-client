@@ -232,5 +232,3 @@ const JobApply = () => {
 };
 
 export default JobApply;
-
-

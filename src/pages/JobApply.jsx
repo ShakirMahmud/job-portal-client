@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../provider/AuthProvider";
+import useAuth from "../hooks/useAuth";
 
 const JobApply = () => {
   const { id } = useParams();
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
 
   const handleApply = (e) => {
     e.preventDefault();
@@ -21,20 +20,19 @@ const JobApply = () => {
     const about = form.about.value;
     const agree = form.agree.checked;
 
-    console.log({
-      id,
-      applicantName,
-      email,
-      phone,
-      linkedin,
-      github,
-      resume,
-      experience,
-      about,
-      agree,
-    });
-    alert("Application submitted successfully!");
-    // form.reset();
+    const jobApplication = {
+      job_id: id,
+      applicant_name: applicantName,
+      applicant_email: email,
+      applicant_phone: phone,
+      applicant_linkedin: linkedin,
+      applicant_github: github,
+      applicant_resume: resume,
+      applicant_experience: experience,
+      applicant_about: about,
+      agree: agree,
+    };
+    
   };
 
   return (

@@ -1,9 +1,10 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const JobDetails = () => {
   const job = useLoaderData();
+  const navigate = useNavigate();
 
   const {
     title,
@@ -31,6 +32,7 @@ const JobDetails = () => {
           <p className="text-sm md:text-lg">{location} • {jobType}</p>
         </div>
         <motion.button
+        onClick={() => navigate(`/jobApply/${job._id}`)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="absolute bottom-4 right-4 bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700"
@@ -79,6 +81,7 @@ const JobDetails = () => {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row justify-start gap-4">
             <motion.button
+              onClick={() => navigate(`/jobApply/${job._id}`)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700"

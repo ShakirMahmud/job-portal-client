@@ -73,7 +73,7 @@ const HotJobCard = ({ job }) => {
         className="bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 focus:outline-none"
         onClick={() => navigate(`/jobs/${job._id}`)}
       >
-        Apply Now
+        View Details
       </motion.button>
     </motion.div>
   );

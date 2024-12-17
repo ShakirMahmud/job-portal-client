@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const MyPostedJobs = () => {
     const [jobs, setJobs] = useState([]);
     const { user } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`http://localhost:5000/jobs?email=${user?.email}`)
@@ -36,13 +38,13 @@ const MyPostedJobs = () => {
                 <table className="w-full table-auto border-collapse border border-gray-200">
                     <thead>
                         <tr className="bg-gray-100">
-                            <th className="border border-gray-200 px-4 py-2 text-left">Title</th>
-                            <th className="border border-gray-200 px-4 py-2 text-left">Location</th>
-                            <th className="border border-gray-200 px-4 py-2 text-left">Job Type</th>
-                            <th className="border border-gray-200 px-4 py-2 text-left">Salary</th>
-                            <th className="border border-gray-200 px-4 py-2 text-left">Deadline</th>
-                            <th className="border border-gray-200 px-4 py-2 text-left">Apply Count</th>
-                            <th className="border border-gray-200 px-4 py-2 text-left">Actions</th>
+                            <th className="border border-gray-200 px-4 py-2 text-center">Title</th>
+                            <th className="border border-gray-200 px-4 py-2 text-center">Job Type</th>
+                            <th className="border border-gray-200 px-4 py-2 text-center">Salary</th>
+                            <th className="border border-gray-200 px-4 py-2 text-center">Deadline</th>
+                            <th className="border border-gray-200 px-4 py-2 text-center">Apply Count</th>
+                            <th className="border border-gray-200 px-4 py-2 text-center">View Applications</th>
+                            <th className="border border-gray-200 px-4 py-2 text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,10 +54,7 @@ const MyPostedJobs = () => {
                                 <td className="border border-gray-200 px-4 py-2">
                                     {job.title}
                                 </td>
-                                {/* Location */}
-                                <td className="border border-gray-200 px-4 py-2">
-                                    {job.location}
-                                </td>
+                                
                                 {/* Job Type */}
                                 <td className="border border-gray-200 px-4 py-2">
                                     {job.jobType}
@@ -71,6 +70,11 @@ const MyPostedJobs = () => {
                                 {/* Apply Count */}
                                 <td className="border border-gray-200 px-4 py-2 text-center">
                                     {job.applicationCount || 0}
+                                </td>
+                                <td className="border border-gray-200 px-4 py-2 text-center">
+                                    <button
+                                    onClick={() => navigate(`/viewApplications/${job._id}`)}
+                                    className='btn btn-link'>View Applications</button>
                                 </td>
                                 {/* Actions */}
                                 <td className="border border-gray-200 px-4 py-2">

@@ -51,7 +51,7 @@ const JobApply = () => {
                     confirmButtonText: "OK",
                     timer: 1500,
                 });
-                navigate("/myApplications");
+                // navigate("/myApplications");
             })
             .catch((error) => {
                 console.error("Error submitting job application:", error);

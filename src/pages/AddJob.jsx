@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const AddJob = () => {
+    const {user} = useAuth();
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -45,6 +49,7 @@ const AddJob = () => {
                         confirmButtonText: "OK",
                         timer: 1500,
                     });
+                    navigate("/myPostedJobs");
                 }
             });
     };
@@ -144,11 +149,11 @@ const AddJob = () => {
                     <div className="flex space-x-4">
                         <div className="form-control w-1/2">
                             <label htmlFor="hrName" className="block mb-2 text-gray-700 font-medium">HR Name</label>
-                            <input type="text" name="hrName" placeholder="e.g., Farhan Rahman" required className="input-field" />
+                            <input type="text" name="hrName" defaultValue={user?.displayName} required className="input-field" />
                         </div>
                         <div className="form-control w-1/2">
                             <label htmlFor="hrEmail" className="block mb-2 text-gray-700 font-medium">HR Email</label>
-                            <input type="email" name="hrEmail" placeholder="e.g., hr@company.com" required className="input-field" />
+                            <input type="email" name="hrEmail" defaultValue={user?.email} required className="input-field" />
                         </div>
                     </div>
 

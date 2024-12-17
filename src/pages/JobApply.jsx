@@ -1,10 +1,11 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const JobApply = () => {
     const { id } = useParams();
     const { user } = useAuth();
+    const navigate = useNavigate();
 
     const handleApply = (e) => {
         e.preventDefault();
@@ -49,7 +50,8 @@ const JobApply = () => {
                     showConfirmButton: true,
                     confirmButtonText: "OK",
                     timer: 1500,
-                })
+                });
+                navigate("/myApplications");
             })
             .catch((error) => {
                 console.error("Error submitting job application:", error);

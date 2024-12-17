@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 const AddJob = () => {
     const handleSubmit = (e) => {
@@ -27,7 +28,25 @@ const AddJob = () => {
             company_logo: initialData.companyLogo,
         };
 
-        console.log(jobData); 
+        fetch("http://localhost:5000/jobs", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(jobData),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.insertedId) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Job added successfully",
+                        showConfirmButton: true,
+                        confirmButtonText: "OK",
+                        timer: 1500,
+                    });
+                }
+            });
     };
 
     return (

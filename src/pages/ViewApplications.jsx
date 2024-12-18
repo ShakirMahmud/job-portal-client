@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ViewApplications = () => {
     const applications = useLoaderData();
@@ -25,7 +26,15 @@ const ViewApplications = () => {
         })
             .then((response) => response.json())
             .then((result) => {
-                console.log(result);
+                if (result.modifiedCount > 0) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success",
+                        text: "Status updated successfully",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
+                }
             })
             .catch((error) => {
                 console.error("Error updating status:", error);

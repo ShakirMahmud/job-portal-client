@@ -7,12 +7,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import axios from 'axios';
 import { CiLineHeight } from 'react-icons/ci';
+import { nav } from 'motion/react-client';
 
 const SignIn = () => {
     const [isClicked, setIsClicked] = useState(true);
     const { signinUser, signInWithGoogle } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+    
 
     const handleSignIn = (e) => {
         e.preventDefault();
@@ -23,11 +25,12 @@ const SignIn = () => {
             .then(result => {
                 const user  = {email: email};
                 // navigate(location?.state ? location.state : '/');
-                axios.post('http://localhost:5000/jwt', user)
-                .then(data => {
-                    // localStorage.setItem('access-token', data.data.token);
-                    // navigate(location?.state ? location.state : '/');
-                    console.log(data)
+                axios.post('http://localhost:5000/jwt', user, {
+                    withCredentials: true
+                })
+                .then(res => {
+                    console.log(res.data)
+                    navigate(location?.state ? location.state : '/');
                 })
             })
             .catch(error => {

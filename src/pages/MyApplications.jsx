@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const MyApplications = () => {
     const { user } = useAuth();
@@ -9,11 +10,13 @@ const MyApplications = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (user?.email) {
-            fetch(`http://localhost:5000/applications?email=${user.email}`)
-                .then((res) => res.json())
-                .then((data) => setJobs(data));
-        }
+        axios.get(`http://localhost:5000/applications?email=${user?.email}`,
+            {
+                withCredentials: true
+            }
+        )
+        .then((res) => setJobs(res.data))
+
     }, [user?.email]);
 
     const handleDelete = (id) => {

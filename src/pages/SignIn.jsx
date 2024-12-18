@@ -5,6 +5,8 @@ import { FcGoogle } from 'react-icons/fc';
 import loginLottieData from '../assets/login.json'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
+import axios from 'axios';
+import { CiLineHeight } from 'react-icons/ci';
 
 const SignIn = () => {
     const [isClicked, setIsClicked] = useState(true);
@@ -19,9 +21,14 @@ const SignIn = () => {
         const password = form.password.value;
         signinUser(email, password)
             .then(result => {
-                const user = result.user;
-                console.log(user);
-                navigate(location?.state ? location.state : '/');
+                const user  = {email: email};
+                // navigate(location?.state ? location.state : '/');
+                axios.post('http://localhost:5000/jwt', user)
+                .then(data => {
+                    // localStorage.setItem('access-token', data.data.token);
+                    // navigate(location?.state ? location.state : '/');
+                    console.log(data)
+                })
             })
             .catch(error => {
                 console.log(error);
@@ -34,7 +41,8 @@ const SignIn = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(location?.state ? location.state : '/');
+                // navigate(location?.state ? location.state : '/');
+
             })
             .catch(error => {
                 console.log(error);

@@ -11,6 +11,27 @@ const ViewApplications = () => {
         window.open(resumeLink, "_blank");
     };
 
+    const handleStatusUpdate = (e, id) => {
+        console.log(e.target.value, id)
+        const data = {
+            status: e.target.value
+        };
+        fetch(`http://localhost:5000/applications/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((error) => {
+                console.error("Error updating status:", error);
+            });
+    };
+
     return (
         <div className="container mx-auto p-4">
             {/* Title */}
@@ -28,6 +49,7 @@ const ViewApplications = () => {
                             <th className="border border-gray-300 px-4 py-2 text-left">Email</th>
                             <th className="border border-gray-300 px-4 py-2 text-left">Phone</th>
                             <th className="border border-gray-300 px-4 py-2 text-left">Experience (yrs)</th>
+                            <th className="border border-gray-300 px-4 py-2 text-left">Change status</th>
                             <th className="border border-gray-300 px-4 py-2 text-left">Actions</th>
                         </tr>
                     </thead>
@@ -50,6 +72,18 @@ const ViewApplications = () => {
                                 {/* Experience */}
                                 <td className="border border-gray-300 px-4 py-2">
                                     {app.applicant_experience}
+                                </td>
+                                <td className="border border-gray-300 px-4 py-2">
+                                    <select name="status"
+                                    onChange={(e)=>handleStatusUpdate(e, app._id)}
+                                    defaultValue={app.status || 'Change Status'}
+                                    className="input-field">
+                                        <option value="underReview">Change Status</option>
+                                        <option value="underReview">Under Review</option>
+                                        <option value="setInterview">Set Interview</option>
+                                        <option value="hired">Hired</option>
+                                        <option value="rejected">Rejected</option>
+                                    </select>
                                 </td>
                                 {/* Actions */}
                                 <td className="border border-gray-300 px-4 py-2">

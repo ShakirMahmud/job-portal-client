@@ -57,6 +57,7 @@ const MyApplications = () => {
                                 <th className="py-2 px-4 text-left border-b">Job Title</th>
                                 {/* <th></th> */}
                                 <th className="py-2 px-4 text-left border-b">Company Name</th>
+                                <th className="py-2 px-4 text-left border-b">Current Status</th>
 
                                 <th className="py-2 px-4 text-left border-b">Actions</th>
                             </tr>
@@ -74,6 +75,7 @@ const MyApplications = () => {
 
                                     <td className="py-2  border-b">{job.job_title}</td>
                                     <td className="py-2 px-4 border-b">{job.company_name}</td>
+                                    <td className="py-2 px-4 border-b">{job.status}</td>
                                     <td className="py-2 px-4 border-b flex space-x-2">
                                         <button
                                             onClick={() => navigate(`/jobs/${job.job_id}`)}

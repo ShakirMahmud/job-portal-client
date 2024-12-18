@@ -39,7 +39,7 @@ const MyPostedJobs = () => {
                     <thead>
                         <tr className="bg-gray-100">
                             <th className="border border-gray-200 px-4 py-2 text-center">Title</th>
-                            <th className="border border-gray-200 px-4 py-2 text-center">Job Type</th>
+                            <th className="border border-gray-200 px-4 py-2 text-center">Status</th>
                             <th className="border border-gray-200 px-4 py-2 text-center">Salary</th>
                             <th className="border border-gray-200 px-4 py-2 text-center">Deadline</th>
                             <th className="border border-gray-200 px-4 py-2 text-center">Apply Count</th>
@@ -57,7 +57,7 @@ const MyPostedJobs = () => {
                                 
                                 {/* Job Type */}
                                 <td className="border border-gray-200 px-4 py-2">
-                                    {job.jobType}
+                                    {job.status}
                                 </td>
                                 {/* Salary */}
                                 <td className="border border-gray-200 px-4 py-2">

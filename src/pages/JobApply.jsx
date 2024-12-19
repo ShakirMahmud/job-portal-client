@@ -35,7 +35,7 @@ const JobApply = () => {
             agree: agree,
         };
 
-        fetch("http://localhost:5000/applications", {
+        fetch("https://job-portal-server-shakir.vercel.app/applications", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

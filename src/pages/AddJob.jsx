@@ -32,7 +32,7 @@ const AddJob = () => {
             company_logo: initialData.companyLogo,
         };
 
-        fetch("http://localhost:5000/jobs", {
+        fetch("https://job-portal-server-shakir.vercel.app/jobs", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

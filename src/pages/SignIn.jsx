@@ -23,7 +23,7 @@ const SignIn = () => {
             .then(result => {
                 const user  = {email: email};
                 // navigate(location?.state ? location.state : '/');
-                axios.post('http://localhost:5000/jwt', user, {
+                axios.post('https://job-portal-server-shakir.vercel.app/jwt', user, {
                     withCredentials: true
                 })
                 .then(res => {
@@ -42,7 +42,7 @@ const SignIn = () => {
             .then(result => { 
                 const user  = {email: result.email};
                 // navigate(location?.state ? location.state : '/');
-                axios.post('http://localhost:5000/jwt', user, {
+                axios.post('https://job-portal-server-shakir.vercel.app/jwt', user, {
                     withCredentials: true
                 })
                 .then(res => {

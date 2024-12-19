@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
-import axios from "axios";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MyApplications = () => {
@@ -12,12 +11,6 @@ const MyApplications = () => {
     const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
-        // axios.get(`http://localhost:5000/applications?email=${user?.email}`,
-        //     {
-        //         withCredentials: true
-        //     }
-        // )
-        // .then((res) => setJobs(res.data))
         axiosSecure.get(`/applications?email=${user?.email}`)
             .then((res) => setJobs(res.data));
 
